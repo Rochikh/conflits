@@ -12,7 +12,12 @@ Réponds UNIQUEMENT avec un objet JSON valide, sans balises markdown, sans texte
   "mecanisme_cognitif": "string",
   "ancrage_theorique": "string",
   "debrief_formateur": "string"
-}`
+}
+
+Consignes supplémentaires par champ :
+- ancrage_theorique : UNE seule référence. Auteur + année + concept directement lié à la représentation erronée ciblée. Pas de liste bibliographique.
+- question_bascule : formuler à la deuxième personne, en situation concrète, sans que la bonne réponse soit évidente à la lecture. La question doit mettre le formateur en inconfort, pas le confirmer dans ce qu'il sait déjà.
+- debrief_formateur : ne jamais mentionner les styles d'apprentissage (auditif, visuel, kinesthésique). C'est un mythe pédagogique réfuté (Pashler et al., 2008). Utiliser uniquement des stratégies validées empiriquement.`
 
 const REQUIRED_KEYS: (keyof ConflictResult)[] = [
   'representation_erronee',
