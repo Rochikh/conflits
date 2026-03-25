@@ -1,0 +1,181 @@
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Form */
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.field textarea,
+.field select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+  background: #fff;
+}
+
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.15);
+}
+
+/* Actions */
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #4361ee;
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #3a56d4;
+}
+
+.btn-secondary {
+  background: #e9ecef;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #dde1e5;
+}
+
+/* Loader */
+
+.loader {
+  text-align: center;
+  margin: 2rem 0;
+  color: #555;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e0e0e0;
+  border-top-color: #4361ee;
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+
+.error-box {
+  background: #fdecea;
+  color: #a11;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Result */
+
+.result-card {
+  margin-top: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.result-block {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+.result-block:last-of-type {
+  border-bottom: none;
+}
+
+.result-block h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #4361ee;
+  margin-bottom: 0.4rem;
+}
+
+.result-block p {
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+}
+
+.result-actions {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+.btn-copy {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn-copy:hover {
+  background: #e4e4e4;
+}
