@@ -45,6 +45,14 @@ export default function App() {
     setError(null)
   }
 
+  function handleLoadExample() {
+    setConcept('Un bon formateur maîtrise parfaitement son sujet')
+    setContexte('Formation de formateurs')
+    setNiveau('Dissonance forte')
+    setResult(null)
+    setError(null)
+  }
+
   return (
     <div className="app">
       <header className="header">
@@ -105,6 +113,9 @@ export default function App() {
               disabled={!canGenerate || loading}
             >
               {loading ? 'Génération en cours…' : 'Générer'}
+            </button>
+            <button className="btn btn-example" onClick={handleLoadExample}>
+              Charger un exemple
             </button>
             {result && (
               <button className="btn btn-secondary" onClick={handleReset}>

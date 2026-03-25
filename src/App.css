@@ -108,6 +108,16 @@
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
+.btn-example {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1.5px solid #fde68a;
+}
+
+.btn-example:hover {
+  background: #fde68a;
+}
+
 .btn-secondary {
   background: #f3f0ff;
   color: #6366f1;
