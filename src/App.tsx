@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { generateConflict } from './api'
 import type { ConflictResult, DestabilisationLevel } from './types'
 import ResultCard from './ResultCard'
+import HelpModal from './HelpModal'
 import './App.css'
 
 const LEVELS: DestabilisationLevel[] = [
@@ -17,6 +18,7 @@ export default function App() {
   const [result, setResult] = useState<ConflictResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showHelp, setShowHelp] = useState(false)
 
   const canGenerate = concept.trim() !== '' && contexte.trim() !== ''
 
@@ -54,6 +56,13 @@ export default function App() {
 
       <main className="main">
         <section className="form-section no-print">
+          <button
+            className="btn-help"
+            onClick={() => setShowHelp(true)}
+            aria-label="Aide"
+          >
+            ?
+          </button>
           <div className="field">
             <label htmlFor="concept">Concept ou compétence à déconstruire</label>
             <textarea
@@ -119,6 +128,19 @@ export default function App() {
         )}
 
         {result && <ResultCard result={result} />}
+
+        {showHelp && (
+          <HelpModal
+            onClose={() => setShowHelp(false)}
+            onLoadExample={(c, ctx, n) => {
+              setConcept(c)
+              setContexte(ctx)
+              setNiveau(n)
+              setResult(null)
+              setError(null)
+            }}
+          />
+        )}
       </main>
     </div>
   )
