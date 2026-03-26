@@ -1,4 +1,6 @@
 import type { DestabilisationLevel } from './types'
+import { getRandomExample } from './examples'
+import { useMemo } from 'react'
 
 interface Props {
   onClose: () => void
@@ -6,16 +8,14 @@ interface Props {
 }
 
 export default function HelpModal({ onClose, onLoadExample }: Props) {
+  const example = useMemo(() => getRandomExample(), [])
+
   function handleOverlayClick(e: React.MouseEvent) {
     if (e.target === e.currentTarget) onClose()
   }
 
   function handleExample() {
-    onLoadExample(
-      'Un bon formateur maîtrise parfaitement son sujet',
-      'Formation de formateurs',
-      'Dissonance forte'
-    )
+    onLoadExample(example.concept, example.contexte, example.niveau)
     onClose()
   }
 
@@ -44,9 +44,9 @@ export default function HelpModal({ onClose, onLoadExample }: Props) {
           <button className="modal-example" onClick={handleExample}>
             <span className="modal-example-label">Charger cet exemple</span>
             <span className="modal-example-fields">
-              <span><strong>Concept :</strong> Un bon formateur maîtrise parfaitement son sujet</span>
-              <span><strong>Contexte :</strong> Formation de formateurs</span>
-              <span><strong>Niveau :</strong> Dissonance forte</span>
+              <span><strong>Concept :</strong> {example.concept}</span>
+              <span><strong>Contexte :</strong> {example.contexte}</span>
+              <span><strong>Niveau :</strong> {example.niveau}</span>
             </span>
           </button>
         </div>

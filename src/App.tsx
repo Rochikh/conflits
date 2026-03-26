@@ -3,6 +3,7 @@ import { generateConflict } from './api'
 import type { ConflictResult, DestabilisationLevel } from './types'
 import ResultCard from './ResultCard'
 import HelpModal from './HelpModal'
+import { getRandomExample } from './examples'
 import './App.css'
 
 const LEVELS: DestabilisationLevel[] = [
@@ -46,9 +47,10 @@ export default function App() {
   }
 
   function handleLoadExample() {
-    setConcept('Un bon formateur maîtrise parfaitement son sujet')
-    setContexte('Formation de formateurs')
-    setNiveau('Dissonance forte')
+    const ex = getRandomExample()
+    setConcept(ex.concept)
+    setContexte(ex.contexte)
+    setNiveau(ex.niveau)
     setResult(null)
     setError(null)
   }
