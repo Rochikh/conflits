@@ -30,7 +30,7 @@ export default function HelpModal({ onClose, onLoadExample }: Props) {
           <h3>Ce que fait l'outil</h3>
           <p>
             Cet outil génère une situation concrète qui fait tomber une croyance
-            professionnelle erronée chez vos apprenants. C'est plus efficace qu'un
+            professionnelle erronée chez tes apprenant·es. C'est plus efficace qu'un
             exposé théorique : le conflit cognitif force la remise en question.
           </p>
         </div>
@@ -38,8 +38,8 @@ export default function HelpModal({ onClose, onLoadExample }: Props) {
         <div className="modal-block">
           <h3>Comment remplir les champs</h3>
           <p>
-            Entrez la croyance à déconstruire, le contexte professionnel et le niveau
-            d'intensité souhaité. Essayez avec cet exemple :
+            Entre la croyance à déconstruire, le contexte professionnel et le niveau
+            d'intensité souhaité. Essaie avec cet exemple :
           </p>
           <button className="modal-example" onClick={handleExample}>
             <span className="modal-example-label">Charger cet exemple</span>

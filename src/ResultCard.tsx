@@ -11,7 +11,7 @@ const SECTIONS: { key: keyof ConflictResult; label: string }[] = [
   { key: 'question_bascule', label: 'Question de bascule' },
   { key: 'mecanisme_cognitif', label: 'Mécanisme cognitif activé' },
   { key: 'ancrage_theorique', label: 'Ancrage théorique' },
-  { key: 'debrief_formateur', label: 'Proposition de débriefage pour le formateur' },
+  { key: 'debrief_formateur', label: 'Proposition de débriefage pour le·la formateur·rice' },
 ]
 
 function resultToText(result: ConflictResult): string {

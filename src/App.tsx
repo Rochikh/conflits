@@ -56,9 +56,9 @@ export default function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>Générateur de Conflits Cognitifs</h1>
+        <h1>Générateur de conflits cognitifs</h1>
         <p className="subtitle">
-          Créez des situations déclenchantes pour provoquer une dissonance cognitive chez vos apprenants.
+          Crée des situations déclenchantes pour provoquer une dissonance cognitive chez tes apprenant·es.
         </p>
       </header>
 
@@ -153,6 +153,15 @@ export default function App() {
           />
         )}
       </main>
+
+      <footer className="footer no-print">
+        <p>
+          Rochane Kherbouche &middot;{' '}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
+            CC BY-SA 4.0
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }
