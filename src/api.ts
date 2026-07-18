@@ -1,7 +1,7 @@
 import type { ConflictResult, DestabilisationLevel } from './types'
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
-const MODEL = 'google/gemini-2.0-flash-001'
+const MODEL = 'deepseek/deepseek-v4-pro-20260423'
 
 const SYSTEM_PROMPT = `Tu es un ingénieur pédagogique expert en psychologie cognitive et en formation d'adultes. Tu génères des situations déclenchantes conçues pour provoquer un conflit cognitif chez des apprenants professionnels.
 Réponds UNIQUEMENT avec un objet JSON valide, sans balises markdown, sans texte avant ou après. Structure exacte :
