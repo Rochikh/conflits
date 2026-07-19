@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { generateConflict } from './api'
 import type { ConflictResult, DestabilisationLevel } from './types'
 import ResultCard from './ResultCard'
+import HelpModal from './HelpModal'
+import { getRandomExample } from './examples'
 import './App.css'
 
 const LEVELS: DestabilisationLevel[] = [
@@ -17,6 +19,7 @@ export default function App() {
   const [result, setResult] = useState<ConflictResult | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showHelp, setShowHelp] = useState(false)
 
   const canGenerate = concept.trim() !== '' && contexte.trim() !== ''
 
@@ -43,17 +46,33 @@ export default function App() {
     setError(null)
   }
 
+  function handleLoadExample() {
+    const ex = getRandomExample()
+    setConcept(ex.concept)
+    setContexte(ex.contexte)
+    setNiveau(ex.niveau)
+    setResult(null)
+    setError(null)
+  }
+
   return (
     <div className="app">
       <header className="header">
-        <h1>Générateur de Conflits Cognitifs</h1>
+        <h1>Générateur de conflits cognitifs</h1>
         <p className="subtitle">
-          Créez des situations déclenchantes pour provoquer une dissonance cognitive chez vos apprenants.
+          Crée des situations déclenchantes pour provoquer une dissonance cognitive chez tes apprenant·es.
         </p>
       </header>
 
       <main className="main">
         <section className="form-section no-print">
+          <button
+            className="btn-help"
+            onClick={() => setShowHelp(true)}
+            aria-label="Aide"
+          >
+            ?
+          </button>
           <div className="field">
             <label htmlFor="concept">Concept ou compétence à déconstruire</label>
             <textarea
@@ -97,6 +116,9 @@ export default function App() {
             >
               {loading ? 'Génération en cours…' : 'Générer'}
             </button>
+            <button className="btn btn-example" onClick={handleLoadExample}>
+              Charger un exemple
+            </button>
             {result && (
               <button className="btn btn-secondary" onClick={handleReset}>
                 Nouvelle génération
@@ -119,7 +141,29 @@ export default function App() {
         )}
 
         {result && <ResultCard result={result} />}
+
+        {showHelp && (
+          <HelpModal
+            onClose={() => setShowHelp(false)}
+            onLoadExample={(c, ctx, n) => {
+              setConcept(c)
+              setContexte(ctx)
+              setNiveau(n)
+              setResult(null)
+              setError(null)
+            }}
+          />
+        )}
       </main>
+
+      <footer className="footer no-print">
+        <p>
+          Rochane Kherbouche &middot;{' '}
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
+            CC BY-SA 4.0
+          </a>
+        </p>
+      </footer>
     </div>
   )
 }
