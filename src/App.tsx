@@ -158,7 +158,14 @@ export default function App() {
 
       <footer className="footer no-print">
         <p>
-          Rochane Kherbouche &middot;{' '}
+          <a href="https://rochane.fr" target="_blank" rel="noopener noreferrer">
+            Rochane Kherbouche
+          </a>{' '}
+          &middot; d&eacute;couvre mes autres outils sur{' '}
+          <a href="https://rochane.fr" target="_blank" rel="noopener noreferrer">
+            rochane.fr
+          </a>{' '}
+          &middot;{' '}
           <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">
             CC BY-SA 4.0
           </a>
