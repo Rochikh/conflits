@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# Conflits
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Générateur de situations déclenchantes pédagogiques. L'outil produit, pour un concept et un contexte métier donnés, une situation conçue pour provoquer un conflit cognitif chez des apprenants professionnels : représentation erronée ciblée, situation déclenchante, question de bascule, mécanisme cognitif, ancrage théorique et débrief formateur.
 
-Currently, two official plugins are available:
+En ligne : https://ia-conflits.rochane.fr/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Fonctionnement
 
-## React Compiler
+- Frontend React + TypeScript + Vite (`src/`). Le navigateur appelle uniquement `POST /api/generate`.
+- Backend Node sans dépendance (`server.mjs`) : sert le build statique et relaie la génération vers l'API DeepSeek (`deepseek-chat`). La clé API, le prompt système, la validation des entrées et la limite de débit (10 requêtes par IP par 10 minutes) restent côté serveur.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Configuration
 
-## Expanding the ESLint configuration
+Créer un fichier `.env.local` à la racine :
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+DEEPSEEK_API_KEY=sk-...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Ne jamais utiliser de variable préfixée `VITE_` pour la clé : elle serait incluse dans le bundle envoyé au navigateur.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Commandes
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm install
+npm run dev      # frontend Vite sur :5173, proxy /api vers :3001
+npm start        # backend sur :3001 (node --env-file=.env.local server.mjs)
+npm run build    # build de production dans dist/
+```
+
+En développement, lancer `npm start` et `npm run dev` en parallèle.
+
+## Déploiement
+
+Build Docker multi-stage (`Dockerfile`) : compilation du frontend puis image finale contenant `dist/` et `server.mjs`, exposée sur le port 3001. La clé est injectée au conteneur via `env_file`. En production, l'application est servie derrière Traefik avec certificat Let's Encrypt.
+
+## Historique
+
+Version initiale : appel direct OpenRouter (Gemini) depuis le navigateur, hébergement GitHub Pages. Juillet 2026 : migration vers DeepSeek avec backend proxy pour protéger la clé API, hébergement auto-géré.
