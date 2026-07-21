@@ -5,7 +5,7 @@ Générateur de situations déclenchantes pédagogiques (conflit cognitif) pour 
 ## Architecture
 
 - `src/` : frontend React. `src/api.ts` appelle `POST /api/generate` (aucune clé ni prompt côté client).
-- `server.mjs` : serveur Node sans dépendance. Sert `dist/` et expose `POST /api/generate` qui appelle DeepSeek (`deepseek-chat`, API compatible OpenAI, `https://api.deepseek.com`). Le prompt système, la validation des entrées (max 500 caractères, niveau dans une liste fermée) et la limite de débit (10 requêtes/IP/10 min, IP lue dans `x-forwarded-for`) sont côté serveur.
+- `server.mjs` : serveur Node sans dépendance. Sert `dist/` et expose `POST /api/generate` qui appelle DeepSeek (`deepseek-v4-flash`, API compatible OpenAI, `https://api.deepseek.com`). Le prompt système, la validation des entrées (max 500 caractères, niveau dans une liste fermée) et la limite de débit (10 requêtes/IP/10 min, IP lue dans `x-forwarded-for`) sont côté serveur.
 - `.env.local` : contient `DEEPSEEK_API_KEY` (jamais de préfixe `VITE_`, la clé ne doit jamais entrer dans le bundle). Non commité (`*.local` dans `.gitignore`), exclu de l'image Docker (`.dockerignore`), injecté au conteneur via `env_file`.
 
 ## Historique

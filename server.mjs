@@ -4,7 +4,7 @@ import { extname, join, normalize } from 'node:path'
 
 const PORT = process.env.PORT || 3001
 const DEEPSEEK_URL = 'https://api.deepseek.com/chat/completions'
-const MODEL = 'deepseek-chat'
+const MODEL = 'deepseek-v4-flash'
 const API_KEY = process.env.DEEPSEEK_API_KEY
 
 if (!API_KEY) {
